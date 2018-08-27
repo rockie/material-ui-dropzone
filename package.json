@@ -1,6 +1,6 @@
 {
-  "name": "material-ui-dropzone",
-  "version": "1.0.3",
+  "name": "material-dropzone",
+  "version": "1.0.0",
   "main": "./src/index.js",
   "description": "A Material-UI file-upload dropzone",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yuvaleros/material-ui-dropzone.git"
+    "url": "https://github.com/rockie/material-ui-dropzone.git"
   },
   "keywords": [
     "react",
@@ -24,7 +24,7 @@
     "react upload"
   ],
   "license": "MIT",
-  "author": "Yuval",
+  "author": "Rockie Guo",
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
@@ -42,8 +42,8 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-register": "^6.26.0",
     "babelify": "^7.3.0",
-    "browser-sync": "^2.18.13",
-    "browserify": "^14.4.0",
+    "browser-sync": "^2.24.7",
+    "browserify": "^16.2.2",
     "browserify-css": "^0.12.0",
     "chai": "^4.1.2",
     "copy": "^0.3.1",
@@ -52,19 +52,16 @@
     "enzyme-adapter-react-16": "^1.0.2",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.4.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
-    "gulp-copy": "^1.0.1",
+    "gulp-copy": "^1.1.0",
     "gulp-eslint": "^4.0.0",
-    "gulp-mocha": "^4.3.1",
+    "gulp-mocha": "^6.0.0",
     "ignore-styles": "^5.0.1",
     "jsdom": "^11.3.0",
     "mocha": "^4.0.1",
-    "react-dom": "^16.0.0",
-    "react-tap-event-plugin": "^3.0.2",
-    "react-tooltip": "^3.4.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.0"
   },
   "browserify": {
     "transform": [

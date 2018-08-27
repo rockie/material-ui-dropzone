@@ -87,6 +87,6 @@ gulp.task('test', function () {
         }));
 });
 
-gulp.task('clean:build', ['build:clean', 'build', 'build:copy']);
+gulp.task('clean:build', gulp.series(['build:clean', 'build', 'build:copy']));
 
-gulp.task('default', ['watchify', 'browserSync']);
+gulp.task('default', gulp.parallel(['watchify', 'browserSync']));
