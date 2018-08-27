@@ -1,7 +1,9 @@
 import DropZoneDialog from '../../src';
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {MuiThemeProvider} from 'material-ui';
+import Button from '@material-ui/core/Button';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
 
 export default class Main extends Component {
     constructor(props) {
@@ -41,10 +43,10 @@ export default class Main extends Component {
             },
         };
 
-        return (<MuiThemeProvider>
+        return (<MuiThemeProvider theme={theme}>
                 <div>
-                    <RaisedButton style={style.addFileBtn} label={'Add Image'}
-                                  onTouchTap={this.handleOpenUpload.bind(this)}/>
+                    <Button style={style.addFileBtn} variant="contained" 
+                                  onClick={this.handleOpenUpload.bind(this)}>Add Image</Button>
                     <DropZoneDialog
                         open={this.state.openUploadModal}
                         saveFiles={this.saveFiles.bind(this)}

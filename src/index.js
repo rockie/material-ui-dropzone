@@ -1,12 +1,16 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 import Dropzone from 'react-dropzone';
-import ActionDelete from 'material-ui/svg-icons/content/clear';
-import FileIcon from 'material-ui/svg-icons/editor/insert-drive-file';
-import CloudUploadIcon from 'material-ui/svg-icons/file/cloud-upload';
-import IconButton from 'material-ui/IconButton';
-import Snackbar from 'material-ui/Snackbar';
+
+import ActionDelete from '@material-ui/icons/Clear';
+import FileIcon from '@material-ui/icons/InsertDriveFile';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 import './index.css';
 import {isImage} from './helpers/helpers.js';
 
@@ -126,14 +130,14 @@ export default class MaterialDropZone extends React.Component {
                     img = <FileIcon className="smallPreviewImg"/>;
                 }
 
-                return (<div>
+                return (<div key={i}>
                     <div className={'imageContainer col fileIconImg'} key={i}>
                         {img}
                         <div className="middle">
-                            <IconButton touch={true}>
+                            <IconButton>
                                 <ActionDelete
                                     className="removeBtn"
-                                    onTouchTap={this.handleRemove.bind(this, file, i)}
+                                    onClick={this.handleRemove.bind(this, file, i)}
                                 />
                             </IconButton>
                         </div>
@@ -142,57 +146,58 @@ export default class MaterialDropZone extends React.Component {
             });
         }
 
-        const actions = [
-            <FlatButton
-                label={'Cancel'}
-                primary={true}
-                onTouchTap={this.handleClose.bind(this)}
-            />,
-            <FlatButton
-                label={'Submit'}
-                primary={true}
-                disabled={this.state.disabled}
-                onTouchTap={this.saveFiles.bind(this)}
-            />];
-
         return (
             <div>
-                <Dialog
-                    title={'Upload File'}
-                    actions={actions}
-                    modal={false}
+                <Dialog                     
                     open={this.state.open}
-                    onRequestClose={this.handleClose.bind(this)}
-                    autoScrollBodyContent={true}
+                    onClose={this.handleClose.bind(this)}
+                    scroll="body"
+                    aria-labelledby="upload-dialog-title"
                 >
-                    <Dropzone
-                        accept={this.state.acceptedFiles.join(',')}
-                        onDrop={this.onDrop.bind(this)}
-                        className={'dropZone'}
-                        acceptClassName={'stripes'}
-                        rejectClassName={'rejectStripes'}
-                        onDropRejected={this.onDropRejected.bind(this)}
-                        maxSize={fileSizeLimit}
-                    >
-                        <div className={'dropzoneTextStyle'}>
-                            <p className={'dropzoneParagraph'}>{'Drag and drop an image file here or click'}</p>
-                            <br/>
-                            <CloudUploadIcon className={'uploadIconSize'}/>
+                    <DialogTitle id="upload-dialog-title">Upload File</DialogTitle>
+                    <DialogContent>
+                        <Dropzone
+                            accept={this.state.acceptedFiles.join(',')}
+                            onDrop={this.onDrop.bind(this)}
+                            className={'dropZone'}
+                            acceptClassName={'stripes'}
+                            rejectClassName={'rejectStripes'}
+                            onDropRejected={this.onDropRejected.bind(this)}
+                            maxSize={fileSizeLimit}
+                        >
+                            <div className={'dropzoneTextStyle'}>
+                                <p className={'dropzoneParagraph'}>{'Drag and drop an image file here or click'}</p>
+                                <br/>
+                                <CloudUploadIcon className={'uploadIconSize'}/>
+                            </div>
+                        </Dropzone>
+                        <br/>
+                        <div className="row">
+                            {this.state.files.length ? <span>Preview:</span> : ''}
                         </div>
-                    </Dropzone>
-                    <br/>
-                    <div className="row">
-                        {this.state.files.length ? <span>Preview:</span> : ''}
-                    </div>
-                    <div className="row">
-                        {previews}
-                    </div>
+                        <div className="row">
+                            {previews}
+                        </div>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            variant="outlined"                 
+                            color="secondary"
+                            onClick={this.handleClose.bind(this)}
+                        >Cancel</Button>,
+                        <Button
+                            variant="outlined"                 
+                            color="primary"
+                            disabled={this.state.disabled}
+                            onClick={this.saveFiles.bind(this)}
+                        >Submit</Button>
+                    </DialogActions>
                 </Dialog>
                 <Snackbar
                     open={this.state.openSnackBar}
                     message={this.state.errorMessage}
                     autoHideDuration={4000}
-                    onRequestClose={this.handleRequestCloseSnackBar}
+                    onClose={this.handleRequestCloseSnackBar}
                 />
             </div>
         );

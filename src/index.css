@@ -123,8 +123,7 @@
 }
 
 .removeBtn {
-    color: white;
-    margin-left: 5px;
+    color: red;    
     z-index: 3;
 }
 
